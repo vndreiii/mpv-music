@@ -29,6 +29,7 @@ simply run
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/vndreiii/mpv-music/main/install.sh)"
 ```
 
+
 ## 📁 Manual setup Instructions
 
 ### 📦 0. Setup your distrobox and mpv
@@ -75,6 +76,7 @@ X-KDE-Protocols=appending,file,ftp,hls,http,https,mms,mpv,rtmp,rtmps,rtmpt,rtmpt
 X-KDE-SubstituteUID=false
 X-KDE-Username=
 ```
+
 
 If you would like to use mpv from a terminal you need to alias mpv in your host to `/usr/bin/distrobox-enter -n MPV -- umpv`
 
@@ -166,6 +168,16 @@ sub-shadow-color="#000118" # Shadow color
 ```
 
 That's it! you have an amazing mpv configuration now, you can further tweak the conf file however you want, I recommend reading the [mpv docs](https://mpv.io/manual/master) :)
+
+> If double clicking plays audio but you can't see the mpv do not worry, the configuration for Hardware Acceleration might not work for your setup!
+
+Edit [mpv.conf](https://github.com/vndreiii/mpv-music?tab=readme-ov-file#%EF%B8%8F-3-get-the-mpvconf) located at $HOME/Distroboxes/mpv/mpv.conf until it renders. If nothing works remove
+
+- vo=gpu-next
+- hwdec=auto-copy
+- gpu-api=vulkan
+
+Which turns off hardware acceleration as a whole :)
 
 ### 🐧 4. Install the autoload.lua script
 
