@@ -93,7 +93,7 @@ you're gonna need to modify the script slightly if you dislike it being queued n
         for f in files:
             f = f.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
              send(f'raw loadfile "{f}" append-play\n'.encode())
-										 🡴 remove append-play
+								   🡴 remove append-play
 
                it should look like this 🢱
 			  send(f'raw loadfile "{f}" \n'.encode())
@@ -105,7 +105,7 @@ you're gonna need to modify the script slightly if you dislike it being queued n
 
 ### 📟️ 2. Get uosc
 
-Follow the official instructions [here](https://github.com/tomasklaen/uosc) or use my provided script which automates everything including getting uosc.
+Follow the official instructions [here](https://github.com/tomasklaen/uosc) or use my provided script which automates everything including getting uosc (Still not ready, work in progress)
 
 ### 🗳️ 3. Get the mpv.conf
 
