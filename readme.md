@@ -45,7 +45,7 @@ After installing the mentioned packages export mpv into your host distro with `d
 
 Now we're going to modify the desktop file to suit our needs (to use umpv and to not load flags as a playlist.. which happened to me)
 
-I renamed the exported .desktop file to MPV-mpv.desktop (becuase I have another MPV installed on my host distro) and inside it looks like this
+I renamed the exported .desktop file to MPV-mpv.desktop (because I have another MPV installed on my host distro) and inside it looks like this
 
 ```ini
 [Desktop Entry]
@@ -93,9 +93,9 @@ you're gonna need to modify the script slightly if you dislike it being queued n
         for f in files:
             f = f.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
              send(f'raw loadfile "{f}" append-play\n'.encode())
-								   🡴 remove append-play
+							  🡴 remove append-play
 
-               it should look like this 🢱
+                 it should look like this 🢱
 			  send(f'raw loadfile "{f}" \n'.encode())
     except Exception:
         print("mpv is terminating or the connection was lost.", file=sys.stderr)
@@ -117,12 +117,10 @@ wget -O ~/.config/mpv/mpv.conf https://raw.githubusercontent.com/mpv-player/mpv/
 Under [Video settings]
 add
 ```ini
-geometry=50%:50%
+geometry=650x650 # You can specify the size of the player in pixels
 autofit-larger=90%x90%
 keep-open=yes
-force-window=immediate
 force-window=yes
-geometry=650x650 # You can specify the size of the player in pixels
 profile=high-quality
 video-sync=display-resample
 gpu-api=vulkan
@@ -135,27 +133,25 @@ Under [Audio settings] add
 
 ```ini
 volume=84 # Or whatever you want the default volume to be
-volume-max=200
-save-position-on-quit=yes
+volume-max=200 # Maximum volume to display and to let use access
+save-position-on-quit=yes # Or do not save it so it will always play the song from the start
 audio-channels=auto
 ```
 
 Under [Other settings]
 
 ```ini
-sub-ass-override=yes
 sub-font="Adwaita Sans" # Specify the font used for the player you can check all fonts with fc-list.
-sub-bold=yes
-sub-font-size=64 # Change the size of the font if it's too big.
+sub-ass-override=yes
+sub-bold=yes # Whether to make font bold or not
+sub-font-size=64 # Font size
 sub-align-x=center
 sub-align-y=center
-sub-margin-x=10
-sub-margin-y=10
 sub-justify=left
-sub-border-size=2.5
-sub-shadow-offset=55
-sub-blur=2
-sub-shadow-color="#00000080"
+sub-border-size=0.2  # Border size of the outlines      
+sub-blur=20 # Overall blur of the outlines
+sub-shadow-offset=8 # Shadow distance (also gets affected by the outlines' blur)
+sub-shadow-color="#000118" # Shadow color
 ```
 
 That's it! you have an amazing mpv configuration now, you can further tweak the conf file however you want, I recommend reading the [mpv docs](https://mpv.io/manual/master) :)
@@ -179,7 +175,7 @@ audio=yes
 ignore_hidden=yes
 same_type=no
 directory_mode=recursive
-ignore_patterns=^~,^bak-,%.bak$
+ignore_patterns=^~,^bak-,%.bak$ # You can add more files to ignore here by adding %.filetype$ for files ending in said filetype or ^filetype- separated by , commas.
 ```
 
 ### 🎤 5. Auto Lyrics with mpv-lrc
@@ -193,7 +189,11 @@ wget -O ~/.config/mpv/script-opts/lrc.conf https://raw.githubusercontent.com/gui
 
 Boom. That’s it. Lyrics from the clouds ☁️
 
-## To enhance the lyrics with an overlay and make the full package work correctly
+> To fetch the lyrics for songs that don't have them / does not fetch them 
+
+You can press Alt + M to retrieve via Musixmatch, and Alt + N via Netease (as of now the author said fetching via Netease will return random chinese characters and pretty much useless picks so do try to use Musixmatch instead)
+
+## 🎉 Final step: To enhance the lyrics with an overlay and make the full package work correctly
 
 You need to clone lyrics-toggle.lua and notify_cover.lua into your ~/.config/mpv/scripts like this:
 
