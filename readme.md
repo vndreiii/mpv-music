@@ -133,6 +133,7 @@ add
 geometry=650x650 # You can specify the size of the player in pixels
 autofit-larger=90%x90%
 keep-open=yes
+osd-bar=no
 force-window=yes
 profile=high-quality
 video-sync=display-resample
@@ -171,7 +172,7 @@ That's it! you have an amazing mpv configuration now, you can further tweak the 
 
 > If double clicking plays audio but you can't see the mpv do not worry, the configuration for Hardware Acceleration might not work for your setup!
 
-Edit [mpv.conf](https://github.com/vndreiii/mpv-music?tab=readme-ov-file#%EF%B8%8F-3-get-the-mpvconf) located at $HOME/Distroboxes/mpv/mpv.conf until it renders. If nothing works remove
+Edit [mpv.conf](https://github.com/vndreiii/mpv-music?tab=readme-ov-file#%EF%B8%8F-3-get-the-mpvconf) located at $HOME/Distroboxes/mpv/.config/mpv/mpv.conf until it renders. If nothing works remove
 
 - vo=gpu-next
 - hwdec=auto-copy
@@ -258,8 +259,13 @@ You can autostart this with a systemd service file or simply adding the .sh file
 
 ### 💾 Notes
 
-Make sure your MPV config is in ~/.config/mpv/mpv.conf (otherwise it might not work im not really sure what could happen) 
+You can clone input.conf into your mpv folder to press Tab key and show the full ui optionally by running
+```bash
+wget -O $HOME/Distroboxes/mpv/.config/mpv/input.conf https://raw.githubusercontent.com/vndreiii/mpv-music/refs/heads/main/input.conf
+```
+
+Make sure your MPV config is in $HOME/Distroboxes/mpv/.config/mpv/mpv.conf (otherwise it might not work im not really sure what could happen) 
 	
-idk what im doing and its probably overcomplicated. Someone else might be able to implement this in an all in one package, I'm not that smart, so enjoy this for now :)
+Idk what im doing and its probably overcomplicated. Someone else might be able to implement this in an all in one package, I'm not that smart, so enjoy this for now :)
 
 For last.fm or listenbrainz you can set up [rescrobbled](https://github.com/InputUsername/rescrobbled) with a systemd service on startup, and whitelisting `player-whitelist = [ "mpv" ]`, the rest of the setup instructions is on their repo.

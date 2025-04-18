@@ -73,13 +73,16 @@ else
   echo "top_bar=always" > "$UOSC_CONF"
 fi
 
+# Enable input.conf tabbing for full ui
+wget -O ~/.config/mpv/input.conf https://raw.githubusercontent.com/vndreiii/mpv-music/refs/heads/main/input.conf
+
 # Step 3: Get and enhance mpv.conf
 echo "🗳️ Setting up mpv.conf..."
 MPV_CONF="$HOME/.config/mpv/mpv.conf"
 mkdir -p "$(dirname "$MPV_CONF")"
 wget -O "$MPV_CONF" https://raw.githubusercontent.com/mpv-player/mpv/refs/heads/master/etc/mpv.conf
 
-# Define your config blocks
+# Define your config blocks (or don't idk)
 video_block="geometry=650x650 # You can specify the size of the player in pixels
 autofit-larger=90%x90%
 keep-open=yes
@@ -106,7 +109,8 @@ sub-justify=left
 sub-border-size=0.2  # Border size of the outlines
 sub-blur=20 # Overall blur of the outlines
 sub-shadow-offset=8 # Shadow distance (also gets affected by the outlines blur)
-sub-shadow-color=\"#000118\" # Shadow color"
+sub-shadow-color=\"#000118\" # Shadow color
+osd-bar=no"
 
 # Append all blocks at the end of the file
 {
