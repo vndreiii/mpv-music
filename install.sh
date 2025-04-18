@@ -35,7 +35,7 @@ cat <<EOF > "$DESKTOP_DIR/$TARGET_DESKTOP_NAME"
 [Desktop Entry]
 Categories=AudioVideo;Audio;Video;Player;TV;
 Comment=Play music with mpv
-Exec=/usr/bin/distrobox-enter -n MPV -- umpv %U
+Exec=/usr/bin/distrobox-enter -n mpv-music -- umpv %U
 GenericName=Music Player
 Icon=mpv
 Keywords=mpv;media;player;video;audio;tv;
