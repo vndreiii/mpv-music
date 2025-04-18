@@ -193,6 +193,17 @@ wget -O ~/.config/mpv/script-opts/lrc.conf https://raw.githubusercontent.com/gui
 
 Boom. That’s it. Lyrics from the clouds ☁️
 
+## To enhance the lyrics with an overlay and make the full package work correctly
+
+You need to clone lyrics-toggle.lua and notify_cover.lua into your ~/.config/mpv/scripts like this:
+
+```bash
+wget -O ~/.config/mpv/scripts/lyrics-toggle.lua https://raw.githubusercontent.com/vndreiii/mpv-music/refs/heads/main/scripts/lyrics-toggle.lua
+wget -O ~/.config/mpv/scripts/ https://raw.githubusercontent.com/vndreiii/mpv-music/refs/heads/main/scripts/notify_cover.lua
+```
+
+This will make the lyrics overlay work and the notifications work correctly.
+
 ---
 
 ### 💡 Autohiding ".lrc" lyric files in Dolphin on KDE
