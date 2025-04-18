@@ -107,6 +107,10 @@ you're gonna need to modify the script slightly if you dislike it being queued n
 
 Follow the official instructions [here](https://github.com/tomasklaen/uosc) or use my provided script which automates everything including getting uosc (Still not ready, work in progress)
 
+We're gonna configure only one thing here which is adding a top bar to have buttons to minimize, maximize, close and a title with the name of the song.
+
+First access `~/.config/mpv/script-opts/uosc.conf` with any editor and search for `top_bar=` set it from no-border to **always**, and voilà, top bar.
+
 ### 🗳️ 3. Get the mpv.conf
 
 Get the default mpv.conf and after that we're gonna add some enhancements,
