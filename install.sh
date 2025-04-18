@@ -5,32 +5,30 @@ set -e
 BOX_NAME="mpv-music"
 BOX_HOME="$HOME/Distroboxes/mpv"
 SETUP_FILE="box.sh"
+SETUP_URL="https://raw.githubusercontent.com/vndreiii/mpv-music/refs/heads/main/$SETUP_FILE"
 DESKTOP_DIR="$HOME/.local/share/applications"
 TARGET_DESKTOP_NAME="MPV-mpv.desktop"
 
-# 🧼 Check for setup file
-if [[ ! -f ./$SETUP_FILE ]]; then
-  echo "❌ '$SETUP_FILE' not found. Place it next to this script."
-  exit 1
-fi
+# 🧼 Make sure setup folder exists
+mkdir -p "$BOX_HOME/setup"
+
+# 🌐 Download the setup file from GitHub
+echo "🌐 Downloading '$SETUP_FILE' from GitHub..."
+curl -fsSL "$SETUP_URL" -o "$BOX_HOME/setup/$SETUP_FILE"
 
 # 📦 Create Distrobox
 echo "📦 Creating Distrobox '$BOX_NAME'..."
 distrobox create \
   --name "$BOX_NAME" \
   --image quay.io/toolbx/arch-toolbox:latest \
-  --home "$BOX_HOME" \
-  --pre-init-hooks "mkdir -p $BOX_HOME/setup"
+  --home "$BOX_HOME"
 
-echo "📥 Copying '$SETUP_FILE' into the box..."
-mkdir -p "$BOX_HOME/setup"
-cp ./$SETUP_FILE "$BOX_HOME/setup/"
-
+# 🚀 Run setup inside the Distrobox
 echo "🚀 Running setup inside Distrobox..."
 distrobox enter "$BOX_NAME" -- bash -c "chmod +x ~/setup/$SETUP_FILE && ~/setup/$SETUP_FILE"
 
+# 🖼 Create desktop file
 echo "🛠 Now we're going to modify the desktop file to suit our needs!"
-
 mkdir -p "$DESKTOP_DIR"
 
 cat <<EOF > "$DESKTOP_DIR/$TARGET_DESKTOP_NAME"

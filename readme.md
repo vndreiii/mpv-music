@@ -22,7 +22,14 @@ it's a dotfile that turns mpv into a beautiful, comfy music player, ngl prolly t
 
     - 💻 Comes with a .desktop launcher that hooks umpv and should work out of the box
 
-## 📁 Setup Instructions
+## 🔗 Automated install
+
+simply run
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/vndreiii/mpv-music/main/install.sh)"
+```
+
+## 📁 Manual setup Instructions
 
 ### 📦 0. Setup your distrobox and mpv
 
