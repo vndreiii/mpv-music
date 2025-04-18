@@ -1,0 +1,1 @@
+/usr/share/mpv/scripts/mpv-lastfm.lua

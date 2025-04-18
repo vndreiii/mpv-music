@@ -1,3 +1,6 @@
+![](./mpv-music.png)
+
+
 # ✨🎵 MPV Music
 
 it's a dotfile that turns mpv into a beautiful, comfy music player, ngl prolly the best on linux 💀
