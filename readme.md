@@ -89,7 +89,7 @@ If you would like to use mpv from a terminal you need to alias mpv in your host 
 
 ### 📥 1. Get umpv
 
-You'll need the umpv helper script (It’s a cute little wrapper to launch mpv smartly via IPC that does magic stuff like having a single instance of MPV running all the time and redirect all new added songs to itself).
+You'll need the umpv helper script (It’s a cute little wrapper to launch mpv smartly via IPC that does magic stuff like having a single instance of MPV running all the time and redirect all new added songs to itself)
 
 ```bash
 sudo wget -O /usr/local/bin/umpv https://raw.githubusercontent.com/mpv-player/mpv/refs/heads/master/TOOLS/umpv
@@ -114,11 +114,11 @@ you're gonna need to modify the script slightly if you dislike it being queued n
 
 ### 📟️ 2. Get uosc
 
-Follow the official instructions [here](https://github.com/tomasklaen/uosc) or use my provided script which automates everything including getting uosc (Still not ready, work in progress)
+Follow the official instructions [here](https://github.com/tomasklaen/uosc) or use my provided [script](https://github.com/vndreiii/mpv-music?tab=readme-ov-file#-automated-install) which automates everything including getting uosc.
 
 We're gonna configure only one thing here which is adding a top bar to have buttons to minimize, maximize, close and a title with the name of the song.
 
-First access `~/.config/mpv/script-opts/uosc.conf` with any editor and search for `top_bar=` set it from no-border to **always**, and voilà, top bar.
+First access `$HOME/Distroboxes/mpv/.config/mpv/script-opts/uosc.conf` with any editor and search for `top_bar=` set it from no-border to **always**, and voilà, top bar.
 
 ### 🗳️ 3. Get the mpv.conf
 
@@ -228,6 +228,10 @@ wget -O ~/.config/mpv/scripts/ https://raw.githubusercontent.com/vndreiii/mpv-mu
 
 This will make the lyrics overlay work and the notifications work correctly.
 
+To toggle the lyrics overlay on or off simply press "V" on your keyboard.
+
+> I also implemented a secondary "Shift+C" keybind in case the background image appears bugged, it will clear all filters such as the overlay.
+
 ---
 
 ### 💡 Autohiding ".lrc" lyric files in Dolphin on KDE
@@ -264,7 +268,7 @@ You can clone input.conf into your mpv folder to press Tab key and show the full
 wget -O $HOME/Distroboxes/mpv/.config/mpv/input.conf https://raw.githubusercontent.com/vndreiii/mpv-music/refs/heads/main/input.conf
 ```
 
-Make sure your MPV config is in $HOME/Distroboxes/mpv/.config/mpv/mpv.conf (otherwise it might not work im not really sure what could happen) 
+Make sure your MPV config is in `$HOME/Distroboxes/mpv/.config/mpv/mpv.conf` (otherwise it might not work im not really sure what could happen) 
 	
 Idk what im doing and its probably overcomplicated. Someone else might be able to implement this in an all in one package, I'm not that smart, so enjoy this for now :)
 
