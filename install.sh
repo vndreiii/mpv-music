@@ -16,12 +16,27 @@ mkdir -p "$BOX_HOME/setup"
 echo "🌐 Downloading '$SETUP_FILE' from GitHub..."
 curl -fsSL "$SETUP_URL" -o "$BOX_HOME/setup/$SETUP_FILE"
 
-# 📦 Create Distrobox
+# 🕵️ Check for NVIDIA GPU
+USE_NVIDIA_FLAG=""
+
+if command -v nvidia-smi &>/dev/null; then
+  echo "💻 NVIDIA GPU detected via nvidia-smi!"
+  USE_NVIDIA_FLAG="--nvidia"
+elif lspci | grep -i 'nvidia' &>/dev/null; then
+  echo "💻 NVIDIA GPU detected via lspci!"
+  USE_NVIDIA_FLAG="--nvidia"
+else
+  echo "✨ No NVIDIA GPU detected, thank god..."
+fi
+
+# 📦 Create Distrobox with conditional GPU support
 echo "📦 Creating Distrobox '$BOX_NAME'..."
 distrobox create \
   --name "$BOX_NAME" \
   --image quay.io/toolbx/arch-toolbox:latest \
-  --home "$BOX_HOME"
+  --home "$BOX_HOME" \
+  $USE_NVIDIA_FLAG
+
 
 # 🚀 Run setup inside the Distrobox
 echo "🚀 Running setup inside Distrobox..."
