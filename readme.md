@@ -37,9 +37,6 @@ simply run
 Use preferably an Arch distrobox with the following packages:
 ```bash
 mpv
-mpv-autosub-git
-mpv-autosubsync-git
-mpv-handler-git
 mpv-mpris
 mpv-thumbfast-git
 adwaita-fonts
