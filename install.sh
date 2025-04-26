@@ -1,6 +1,74 @@
 #!/bin/bash
 set -e
 
+# --- Dependency Check and Installation ---
+
+echo "🔎 Checking for necessary dependencies (distrobox, podman)..."
+
+# Function to check if a command exists
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Check for package managers and install dependencies if needed
+if command_exists apt; then
+  echo "📦 Detected APT package manager (Debian/Ubuntu-based)."
+  PACKAGES_TO_INSTALL=""
+  if ! command_exists distrobox; then
+    PACKAGES_TO_INSTALL+=" distrobox"
+  fi
+  if ! command_exists podman; then
+    PACKAGES_TO_INSTALL+=" podman"
+  fi
+
+  if [ -n "$PACKAGES_TO_INSTALL" ]; then
+    echo "🔧 Installing missing dependencies:$PACKAGES_TO_INSTALL..."
+    sudo apt update
+    sudo apt install -y $PACKAGES_TO_INSTALL
+  else
+    echo "✅ Dependencies already installed."
+  fi
+elif command_exists dnf; then
+  echo "📦 Detected DNF package manager (Fedora-based)."
+  PACKAGES_TO_INSTALL=""
+  if ! command_exists distrobox; then
+    PACKAGES_TO_INSTALL+=" distrobox"
+  fi
+  if ! command_exists podman; then
+    PACKAGES_TO_INSTALL+=" podman"
+  fi
+
+  if [ -n "$PACKAGES_TO_INSTALL" ]; then
+    echo "🔧 Installing missing dependencies:$PACKAGES_TO_INSTALL..."
+    sudo dnf install -y $PACKAGES_TO_INSTALL
+  else
+    echo "✅ Dependencies already installed."
+  fi
+elif command_exists pacman; then
+  echo "📦 Detected Pacman package manager (Arch-based)."
+  PACKAGES_TO_INSTALL=""
+  # Check if packages are installed using pacman -Q
+  if ! pacman -Q distrobox &>/dev/null; then
+    PACKAGES_TO_INSTALL+=" distrobox"
+  fi
+  if ! pacman -Q podman &>/dev/null; then
+    PACKAGES_TO_INSTALL+=" podman"
+  fi
+
+  if [ -n "$PACKAGES_TO_INSTALL" ]; then
+    echo "🔧 Installing missing dependencies:$PACKAGES_TO_INSTALL..."
+    sudo pacman -Syu --noconfirm $PACKAGES_TO_INSTALL
+  else
+    echo "✅ Dependencies already installed."
+  fi
+else
+  echo "⚠️ Could not detect a supported package manager (apt, dnf, pacman)."
+  echo "   Please install 'distrobox' and 'podman' manually from your distro's repo before running this script."
+  exit 1
+fi
+
+echo "--- Dependency check complete ---"
+
 # 💾 Vars
 BOX_NAME="mpv-music"
 BOX_HOME="$HOME/Distroboxes/mpv"
@@ -37,7 +105,6 @@ distrobox create \
   --home "$BOX_HOME" \
   $USE_NVIDIA_FLAG
 
-
 # 🚀 Run setup inside the Distrobox
 echo "🚀 Running setup inside Distrobox..."
 distrobox enter "$BOX_NAME" -- bash -c "chmod +x ~/setup/$SETUP_FILE && ~/setup/$SETUP_FILE"
@@ -46,7 +113,7 @@ distrobox enter "$BOX_NAME" -- bash -c "chmod +x ~/setup/$SETUP_FILE && ~/setup/
 echo "🛠 Now we're going to modify the desktop file to suit our needs!"
 mkdir -p "$DESKTOP_DIR"
 
-cat <<EOF > "$DESKTOP_DIR/$TARGET_DESKTOP_NAME"
+cat <<EOF >"$DESKTOP_DIR/$TARGET_DESKTOP_NAME"
 [Desktop Entry]
 Categories=AudioVideo;Audio;Video;Player;TV;
 Comment=Play music with mpv
