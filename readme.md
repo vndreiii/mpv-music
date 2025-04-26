@@ -22,9 +22,31 @@ it's a dotfile that turns mpv into a beautiful, comfy music player, ngl prolly t
 
     - 💻 Comes with a .desktop launcher that hooks umpv and should work out of the box
 
-## 🔗 Automated install
 
-simply run
+## 🔗 Automated install (with dependencies)
+### 1. Install distrobox	
+
+| Distribution  | Command |
+| ------------- | ------------- |
+| Ubuntu, Debian, etc.  | ```# apt-get install distrobox```  |
+| Fedora, RHEL, etc.  | ```# dnf install distrobox```  |
+| Arch | ```# pacman -S extra/distrobox``` |
+
+Your distribution is not listed? Find your package on [Repology](https://repology.org/project/distrobox/versions)
+
+### 2. Install podman
+
+⚠️ Podman should normally already be preinstalled on Fedora and its derivatives
+
+| Distribution  | Command |
+| ------------- | ------------- |
+| Ubuntu, Debian, etc.  | ```# apt-get install podman```  |
+| Fedora, RHEL, etc.  | ```# dnf install podman```  |
+| Arch | ```# pacman -S extra/podman``` |
+
+Your distribution is not listed? Find your package on [Repology](https://repology.org/project/podman/versions)
+
+### 3. Run the script below
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/vndreiii/mpv-music/main/install.sh)"
 ```
