@@ -185,7 +185,10 @@ sub-border-size=0.2  # Border size of the outlines
 sub-blur=20 # Overall blur of the outlines
 sub-shadow-offset=8 # Shadow distance (also gets affected by the outlines' blur)
 sub-shadow-color="#000118" # Shadow color
+drag-and-drop=replace # Fixes drag and drop in scenarios where it wouldn't work otherwise. Thanks to some random reddit comment I saw somewhere. It fixes it for Hyprland for example.
 ```
+
+*drag-and-drop=replace fixes drag and drop behaviour on WMs.
 
 That's it! you have an amazing mpv configuration now, you can further tweak the conf file however you want, I recommend reading the [mpv docs](https://mpv.io/manual/master) :)
 
