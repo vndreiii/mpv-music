@@ -58,6 +58,7 @@ packages=(
   mpv-mpris
   mpv-thumbfast-git
   adwaita-fonts # For default subtitle font
+  libnotify # To fix notifications not being sent. I'm so stupid man
 )
 
 # Loop through each package and install if missing
