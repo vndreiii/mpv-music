@@ -62,6 +62,7 @@ mpv
 mpv-mpris
 mpv-thumbfast-git
 adwaita-fonts
+libnotify # For notifications, latest addition, can you believe i had this going on for 6 months without it working properly? lol.
 ```
 
 Separate your home to not clutter your real home, in case you have another mpv installed like me.
