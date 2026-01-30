@@ -99,11 +99,18 @@ fi
 
 # 📦 Create Distrobox with conditional GPU support
 echo "📦 Creating Distrobox '$BOX_NAME'..."
-distrobox create \
+if ! distrobox create \
   --name "$BOX_NAME" \
-  --image quay.io/toolbx/arch-toolbox:latest \
+  --image archlinux \
   --home "$BOX_HOME" \
-  $USE_NVIDIA_FLAG
+  $USE_NVIDIA_FLAG; then
+  echo "⚠️ 'archlinux' image failed, falling back to 'quay.io/toolbx/arch-toolbox:latest'..."
+  distrobox create \
+    --name "$BOX_NAME" \
+    --image quay.io/toolbx/arch-toolbox:latest \
+    --home "$BOX_HOME" \
+    $USE_NVIDIA_FLAG
+fi
 
 # 🚀 Run setup inside the Distrobox
 echo "🚀 Running setup inside Distrobox..."
