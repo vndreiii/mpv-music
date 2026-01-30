@@ -59,7 +59,7 @@ Your distribution is not listed? Find your package on [Repology](https://repolog
 Use preferably an Arch distrobox with the following packages:
 ```bash
 mpv
-mpv-mpris
+~~mpv-mpris~~ (Officially breaks the app from running because it gives a `(process:3123140): GLib-GIO-CRITICAL **: 18:25:48.868: g_dbus_connection_emit_signal: assertion 'G_IS_DBUS_CONNECTION (connection)' failed` error)
 mpv-thumbfast-git
 adwaita-fonts
 libnotify # For notifications, latest addition, can you believe i had this going on for 6 months without it working properly? lol.
